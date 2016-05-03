@@ -22,12 +22,9 @@ namespace ConsoleApplication
         public static void Main(string[] args)
         {
         	var assemblyName = "test";
-        	var sln = new ProjectJsonWorkspace(@"C:\dd").CurrentSolution.Projects.First();
-            // foreach(var r in sln.MetadataReferences)
-            // {
-            //     Console.WriteLine("Reference: {0}, {1}", r.Display, r.GetHashCode());
-            // }
-
+            var jsonPath = Environment.CurrentDirectory;
+        	var sln = new ProjectJsonWorkspace(jsonPath).CurrentSolution.Projects.First();
+            Console.WriteLine("Reference count: {0}", sln.MetadataReferences.Count());
             var compilerOptions = new CSharpCompilationOptions(outputKind: OutputKind.DynamicallyLinkedLibrary);
             var programSource = _source + "\n" + string.Join("\n", DbFiles());
             Console.WriteLine("Program: {0}", programSource);
