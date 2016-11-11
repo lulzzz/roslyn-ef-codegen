@@ -4,14 +4,14 @@ branches:
     - master
 
 environment:
-  CLI_VERSION: latest
-  CLI_ARCH: x64
   DOTNETCLI_ZIP_URL: https://go.microsoft.com/fwlink/?LinkID=831469
   
 install:
   - ps: (New-Object Net.WebClient).DownloadFile("$env:DOTNETCLI_ZIP_URL",'dotnet.zip')
   - ps: $env:DOTNET_INSTALL_DIR = "$pwd\.dotnetcli"
-  - ps: 7z x dotnet.zip -y -o"$env:DOTNET_INSTALL_DIR\.dotnetcli"
+  - echo %DOTNET_INSTALL_DIR%
+  - ps: $env:DOTNET_INSTALL_DIR
+  - 7z x dotnet.zip -y -o"%DOTNET_INSTALL_DIR%"
   - ps: $env:Path = "$env:DOTNET_INSTALL_DIR;$env:Path"
 
 before_build:
