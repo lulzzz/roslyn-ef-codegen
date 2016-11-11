@@ -10,6 +10,7 @@ install:
   - ps: $env:DOTNET_INSTALL_DIR = "$pwd\.dotnetcli"
   - ps: $env:DOTNET_ZIP_FILE = "$pwd\dotnet.zip"
   - ps: (New-Object Net.WebClient).DownloadFile("$env:DOTNETCLI_ZIP_URL",'dotnet.zip')
+  - dir
   - 7z x %DOTNET_ZIP_FILE% -y -o"%DOTNET_INSTALL_DIR%"
   - ps: $env:Path = "$env:DOTNET_INSTALL_DIR;$env:Path"
 
