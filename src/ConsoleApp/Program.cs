@@ -44,10 +44,12 @@ namespace ConsoleApp
             var references = new ProjectJsonWorkspace(Path.Combine(cwd, "src/ConsoleApp/project.json")).CurrentSolution.Projects.SelectMany(p => p.MetadataReferences);
             var currentAssembly = typeof(Program).GetTypeInfo().Assembly;
             var fileUri = "file:///";
+            // pretty dumb test for windows platform
+            if (string.IsNullOrWhiteSpace(Environment.GetEnvironmentVariable("TEMP")))
+            {
+                fileUri = "file://";
+            }
             var asmPath = Path.GetFullPath(currentAssembly.CodeBase.Substring(fileUri.Length));
-            Console.WriteLine("asmPath 1: {0}", currentAssembly.CodeBase);
-            Console.WriteLine("asmPath 2: {0}", currentAssembly.CodeBase.Substring(fileUri.Length));
-            Console.WriteLine("asmPath 3: {0}", asmPath);
 
             var compilerOptions = new CSharpCompilationOptions(outputKind: OutputKind.DynamicallyLinkedLibrary);
             var trees = new SyntaxTree[] {
