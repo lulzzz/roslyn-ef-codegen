@@ -40,7 +40,7 @@ namespace ConsoleApp
         static Tuple<Assembly, MetadataReference> Build(string assmName, string source, MetadataReference schema = null)
         {
             var cwd = System.IO.Directory.GetCurrentDirectory();
-            Console.WriteLine("project.json: {0}", Path.Combine(cwd, "src/ConsoleApp/project.json"));
+            // Console.WriteLine("project.json: {0}", Path.Combine(cwd, "src/ConsoleApp/project.json"));
             var references = new ProjectJsonWorkspace(Path.Combine(cwd, "src/ConsoleApp/project.json")).CurrentSolution.Projects.SelectMany(p => p.MetadataReferences);
             var currentAssembly = typeof(Program).GetTypeInfo().Assembly;
             var fileUri = "file:///";
@@ -67,7 +67,6 @@ namespace ConsoleApp
 
             var stream = new MemoryStream();
             var compilationResult = compilation.Emit(stream, options: new EmitOptions());
-            Console.WriteLine("Success: {0}", compilationResult.Success);
             foreach(var diag in compilationResult.Diagnostics)
             {
                 if (diag.Severity == DiagnosticSeverity.Error)
