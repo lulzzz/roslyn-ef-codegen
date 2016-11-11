@@ -1,4 +1,4 @@
-Microsoft.CodeAnalysis/EntityFrameworkCore query codegeneration [![Windows build status](https://ci.appveyor.com/api/projects/status/2l98lij5j93wf1q1?svg=true)](https://ci.appveyor.com/project/stofte/roslyn-ef-codegen)
+Microsoft.CodeAnalysis/EntityFrameworkCore query codegeneration [![Windows build status](https://ci.appveyor.com/api/projects/status/2l98lij5j93wf1q1?svg=true)](https://ci.appveyor.com/project/stofte/roslyn-ef-codegen) [![Linux build Status](https://travis-ci.org/stofte/roslyn-ef-codegen.svg?branch=master)](https://travis-ci.org/stofte/roslyn-ef-codegen)
 ---------------------------------------------------------------
 
 This repository contains some rough POC code that

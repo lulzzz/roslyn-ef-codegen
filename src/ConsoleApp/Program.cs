@@ -12,7 +12,7 @@ namespace ConsoleApp
 {
     public interface IGenerated
     {
-        void DoIt();
+        int DoIt();
     }
     public class Foo 
     {
@@ -24,7 +24,7 @@ namespace ConsoleApp
 
     public class Program
     {
-        public static void Main(string[] args)
+        public static int Main(string[] args)
         {
             var sqlitePath = Path.Combine(System.IO.Directory.GetCurrentDirectory(), "world.sqlite");
             var connStr = string.Format("Data Source = {0}", sqlitePath);
@@ -34,7 +34,7 @@ namespace ConsoleApp
             var query = Build("query", _source, schema.Item2);
             var programType = query.Item1.GetTypes().Single(t => t.Name == "Generated");
             var programInstance = (IGenerated) Activator.CreateInstance(programType);
-            programInstance.DoIt();
+            return programInstance.DoIt();
         }
 
         static Tuple<Assembly, MetadataReference> Build(string assmName, string source, MetadataReference schema = null)
@@ -86,13 +86,14 @@ namespace SomeNs
 
     public class Generated : IGenerated
     {
-        public void DoIt()
+        public int DoIt()
         {
             Foo.Bar();
             using (var context = new SqliteWorld.Ctx())
             {
                 var count = context.City.Where(x => x.Name.StartsWith(""Ca"")).Count();
                 Console.WriteLine(""Cities starting with 'Ca': {0}"", count);
+                return count;
             }
         }
     }

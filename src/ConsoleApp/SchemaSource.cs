@@ -37,7 +37,11 @@ namespace ConsoleApp
             var scaffoldingModelFactory = serviceProvider.GetRequiredService<IScaffoldingModelFactory>();
             
             var programName = "Ctx";
-            var outputPath = @"C:\foo";
+            var outputPath = Environment.GetEnvironmentVariable("TEMP");
+            if (string.IsNullOrEmpty(outputPath)) 
+            {
+                outputPath = "/tmp";
+            }
             var conf = new ReverseEngineeringConfiguration 
             {
                 ConnectionString = connectionString,

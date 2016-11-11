@@ -9,7 +9,8 @@ namespace ConsoleApp.Test
         public void TestMethod()
         {
             Console.WriteLine("Serious testing:");
-            ConsoleApp.Program.Main(new string[] {});
+            var count = ConsoleApp.Program.Main(new string[] {});
+            Assert.Equal(83, count);
         }
     }
 }
