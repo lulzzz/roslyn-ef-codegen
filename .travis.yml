@@ -1,0 +1,30 @@
+sudo: required
+dist: trusty
+
+services:
+  - postgresql
+
+addons:
+  postgresql: "9.4"
+  apt:
+    packages:
+    - gettext
+    - libcurl4-openssl-dev
+    - libicu-dev
+    - libssl-dev
+    - libunwind8
+    - zlib1g
+
+before_install:
+ - ulimit -n 1024
+ - sudo sh -c 'echo "deb [arch=amd64] https://apt-mo.trafficmanager.net/repos/dotnet-release/ trusty main" > /etc/apt/sources.list.d/dotnetdev.list'
+ - sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 417A0893
+ - sudo apt-get update
+ - sudo apt-get install dotnet-dev-1.0.0-preview2.1-003155
+
+install:
+ - dotnet --info
+
+script:
+ - dotnet restore
+ - dotnet test test/ConsoleApp.Test

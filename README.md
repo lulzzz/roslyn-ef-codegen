@@ -1,4 +1,4 @@
-Microsoft.CodeAnalysis/EntityFrameworkCore query codegeneration
+Microsoft.CodeAnalysis/EntityFrameworkCore query codegeneration [![Windows build status](https://ci.appveyor.com/api/projects/status/2l98lij5j93wf1q1?svg=true)](https://ci.appveyor.com/project/stofte/roslyn-ef-codegen)
 ---------------------------------------------------------------
 
 This repository contains some rough POC code that
@@ -17,12 +17,11 @@ The code is linear and starts in `Program.Main`:
 
 The Xunit test project just calls the main projects `Main` method (mostly to test that everything connects).
 
-
 Usage
 -----
 
     dotnet restore
-    dotnet test test/ConsoleApp.test
+    dotnet test test/ConsoleApp.Test
 
 Output should be
 
