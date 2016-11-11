@@ -1,15 +1,10 @@
 namespace ConsoleApp
 {
     using System;
-    using System.Linq;
     using Microsoft.EntityFrameworkCore.Scaffolding.Internal;
     using Microsoft.EntityFrameworkCore.Scaffolding;
-    using System.Threading.Tasks;
     using System.Text;
-    using System.Text.RegularExpressions;
-    using NLog.Extensions.Logging;
     using Microsoft.Extensions.DependencyInjection;
-    using Microsoft.Extensions.Logging;
 
     public class SchemaSource
     {
@@ -32,7 +27,6 @@ namespace ConsoleApp
                 }); 
             new SqliteDesignTimeServices().ConfigureDesignTimeServices(services);
             var serviceProvider = services.BuildServiceProvider();
-            serviceProvider.GetService<ILoggerFactory>().AddNLog();
             var generator = serviceProvider.GetRequiredService<ReverseEngineeringGenerator>();
             var scaffoldingModelFactory = serviceProvider.GetRequiredService<IScaffoldingModelFactory>();
             
