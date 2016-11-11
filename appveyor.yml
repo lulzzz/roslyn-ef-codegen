@@ -1,0 +1,27 @@
+version: 0.1.0.{build}
+branches:
+  only:
+    - master
+
+environment:
+  CLI_VERSION: latest
+  CLI_ARCH: x64
+  DOTNETCLI_URL: https://raw.githubusercontent.com/dotnet/cli/rel/1.0.0/scripts/obtain/dotnet-install.ps1
+
+install:
+  # see https://github.com/enricosada/fsharp-dotnet-cli-samples/blob/master/appveyor.yml
+  # Download install script to install .NET cli in .dotnet dir
+  - ps: mkdir -Force ".\scripts\obtain\" | Out-Null
+  - ps: Invoke-WebRequest "$env:DOTNETCLI_URL" -OutFile ".\scripts\obtain\install.ps1"
+  - ps: $env:DOTNET_INSTALL_DIR = "$pwd\.dotnetcli"
+  - ps: '& .\scripts\obtain\install.ps1 -version "$env:CLI_VERSION" -Architecture "$env:CLI_ARCH" -InstallDir "$env:DOTNET_INSTALL_DIR" -NoPath'
+  - ps: $env:Path = "$env:DOTNET_INSTALL_DIR;$env:Path"
+
+before_build:
+  - dotnet --info
+          
+build_script:
+  - dotnet restore
+
+test_script:
+  - dotnet test test/ConsoleApp.test
