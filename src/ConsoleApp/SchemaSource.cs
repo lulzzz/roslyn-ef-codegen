@@ -21,7 +21,7 @@ namespace ConsoleApp
                 .AddSingleton<DbContextWriter>()
                 .AddSingleton<EntityTypeWriter>()
                 .AddSingleton<CodeWriter, StringBuilderCodeWriter>()
-                .AddSingleton<CandidateNamingService, CandidateNamingService>() 
+                .AddSingleton<CandidateNamingService, EntityNamingService>() 
                 .AddSingleton(typeof(IFileService), sp => {
                     return InMemoryFiles = new InMemoryFileService();
                 }); 

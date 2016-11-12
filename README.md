@@ -26,7 +26,5 @@ Usage
 Output should be
 
     Serious testing:
-    Success: True
-    Success: True
     hello from main
     Cities starting with 'Ca': 83

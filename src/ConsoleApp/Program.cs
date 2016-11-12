@@ -96,7 +96,7 @@ namespace SomeNs
             Foo.Bar();
             using (var context = new SqliteWorld.Ctx())
             {
-                var count = context.City.Where(x => x.Name.StartsWith(""Ca"")).Count();
+                var count = context.city.Where(x => x.Name.StartsWith(""Ca"")).Count();
                 Console.WriteLine(""Cities starting with 'Ca': {0}"", count);
                 return count;
             }
