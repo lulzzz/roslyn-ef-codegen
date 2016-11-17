@@ -18,11 +18,13 @@
     "netcoreapp1.1": {
       "dependencies": {
         "Microsoft.NETCore.App": {
-          "type": "platform",
           "version": "1.1.0-preview1-001100-00"
         }
       },
       "imports": ["portable-net452+win8+wp8+wpa81", "dnxcore50"]
     }
+  },
+  "runtimes": {
+    "win10-x64": {}
   }
 }
